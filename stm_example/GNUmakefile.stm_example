@@ -1,0 +1,26 @@
+ifndef TOPDIR
+TOPDIR := ../
+endif
+TARGET  := $(notdir $(shell pwd))
+include $(TOPDIR)/build/config.mk
+
+
+###########################
+#IGNORE_FILES	:= 
+#SUBDIRS		:= .
+#############################
+
+#LIBS    := -lCommonUtil -lMfLog -lStm -lSms -lpthread -lrt
+LIBS    := -lpthread -lrt -lCommonUtil -lMfLog -lStm
+OBJS	:= $(wildcard $(shell pwd)/*.cpp)
+
+#all : $(DIRECTORIES) $(TARGET) 
+all : $(LIBS) $(OBJS)
+	$(CXX) $(OPTIONS) $(DEFINES) $(LIBS) $(INCLUDES) -o $(TARGET) $(OBJS)
+
+clean : 
+	rm -rf $(TARGET)
+dos2unix : realdos2unix
+
+
+

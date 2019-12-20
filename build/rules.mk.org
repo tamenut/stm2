@@ -1,0 +1,67 @@
+SRCS            := $(foreach dir, $(SUBDIRS), $(wildcard $(SRCDIR)/$(dir)/*.cpp))
+
+compile:
+	$(foreach dir,$(SUBDIRS), make -C $(dir)  || exit $?;)
+
+distclean:
+	$(foreach dir,$(SUBDIRS), make -C $(dir) clean;)
+	rm -rf $(OUTDIR)/$(TARGET) $(OUTDIR)/*.o 
+
+distdos2unix:
+	$(foreach dir,$(SUBDIRS), make -C $(dir) dos2unix;)
+
+distdebug:
+	$(foreach dir,$(SUBDIRS), make -C $(dir) debug;)
+
+realclean :
+	rm -rf $(OUTDIR)/$(TARGET) $(foreach dir,$(SUBDIRS), $(OUTDIR)/$(dir)/*.o )
+
+realdos2unix : 
+	$(foreach dir,$(SUBDIRS), $(foreach ext, h cpp, -dos2unix $(SRCDIR)/$(dir)/*.$(ext); ) )
+
+
+%.dir : 
+#@echo "Checking directory $*"
+	@if [ ! -d $* ]; then \
+		echo "Making directory $*"; \
+		mkdir -p $* ; \
+	fi;
+
+	@echo "SRC -> $(SRCS)"
+	@echo "OBJ -> $(OBJS)"
+
+##########################################
+.SUFFIXES : .o .c .cpp
+%.o:%.c
+	$(CC) $(CFLAGS) -o $@ $(DEFINES) $(INCLUDES) -c $<
+
+%.o:%.cpp
+	$(CXX) $(CXXFLAGS) -o $@ $(DEFINES) $(INCLUDES) -c $<
+
+$(OUTDIR)/%$(OBJ_SUFFIX).o : $(SRCDIR)/%.cpp
+	$(CXX) $(CXXFLAGS) -o $@ $(DEFINES) $(INCLUDES) -c $<
+##########################################
+
+##부분 오브젝트 
+%$(PARTIAL_SUFFIX).o : $(OBJS)
+	$(LD) $(LDFLAGS) -r -o $(OUTDIR)/$@ $(OBJS)
+
+%.$(LIB_EXT) : $(PARTIAL_OBJS)
+	$(AR) $(ARFLAGS) $(LIBPATH)/$@ $?
+
+%.$(SO_EXT) : $(PARTIAL_OBJS)
+	@if [ -L $(LIBPATH)/$@ ]; then rm -rf $(LIBPATH)/$@*; fi
+	@if [ $(VERSIONED_SO) = "1" ]; then \
+		$(CXX) $(SOFLAGS) -shared -Wl,-soname,$@$(SO_MAJOR_VERSION) -o $(LIBPATH)/$@$(SO_VERSION) $? ; \
+		ln -s $@$(SO_VERSION) $(LIBPATH)/$@ ; \
+		ln -s $@$(SO_VERSION) $(LIBPATH)/$@$(SO_MAJOR_VERSION) ; \
+	else \
+		$(CXX) $(SOFLAGS) -shared -Wl,-soname,$@ -o $(LIBPATH)/$@ $? ; \
+	fi;
+
+#추가로 RM 방지하는 룰이므로 삭제 금지
+objs : $(OBJS) 
+
+#define doinsubdirs
+#$(foreach d,$(1),${MAKE} -C ${d} $@;)
+#endef

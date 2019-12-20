@@ -1,0 +1,24 @@
+ifndef TOPDIR
+TOPDIR := ../
+endif
+TARGET := libMfLog
+include $(TOPDIR)/build/config.mk
+
+
+###########################
+#IGNORE_FILES	:= 
+#SUBDIRS		:= .
+#############################
+
+include $(TOPDIR)/build/macros.mk
+
+
+all : $(DIRECTORIES) $(TARGET) 
+
+clean : realclean
+	
+dos2unix : realdos2unix
+
+
+include $(TOPDIR)/build/rules.mk
+

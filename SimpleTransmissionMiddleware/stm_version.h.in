@@ -1,0 +1,13 @@
+#ifndef _STM_VERSION_H_
+#define _STM_VERSION_H_
+
+#define STM_MAJOR_VERSION 	1
+#define STM_MINOR_VERSION 	2
+#define STM_REVISION	$WCREV$
+
+#define QUOTE_(x)		#x
+#define QUOTE(x)		QUOTE_(x)
+
+#define STM_VERSION	QUOTE(STM_MAJOR_VERSION.STM_MINOR_VERSION (Rev STM_REVISION - $WCDATE$))
+
+#endif

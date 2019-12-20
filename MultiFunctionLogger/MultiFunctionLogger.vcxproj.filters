@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{579f0e5e-beef-4be7-86cd-f1aea8bad775}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\CommonUtil">
+      <UniqueIdentifier>{83b6d404-0a60-4db0-a0f1-843a3a00b8b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Log">
+      <UniqueIdentifier>{1d511aec-6b70-45eb-b8c9-81c7bbe37b03}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AppIndexManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ClientDiscoveryMsg.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ConfigReceiver.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Configuration.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="DiscoveryManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="FileOutputStream.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="LogModule.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="LogModuleImpl.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="LogSender.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="LogUtil.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ReaderInfo.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ReceiveDiscoveryMsg.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="SendDiscoveryMsg.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ServerDiscoveryMsg.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="StructDefine.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AppIndexManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="ClientDiscoveryMsg.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="ConfigReceiver.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Configuration.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="define.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="DiscoveryManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="FileOutputStream.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="LogModuleImpl.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="LogSender.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="LogUtil.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="ReaderInfo.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="ReceiveDiscoveryMsg.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="SendDiscoveryMsg.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="ServerDiscoveryMsg.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\STMSocket.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="StructDefine.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CommonUtil\define_dll.h">
+      <Filter>include\CommonUtil</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CommonUtil\HighResolutionTime.h">
+      <Filter>include\CommonUtil</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CommonUtil\TCircularQueue.h">
+      <Filter>include\CommonUtil</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CommonUtil\TCond.h">
+      <Filter>include\CommonUtil</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CommonUtil\TList.h">
+      <Filter>include\CommonUtil</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CommonUtil\TMemoryManager.h">
+      <Filter>include\CommonUtil</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CommonUtil\TMutex.h">
+      <Filter>include\CommonUtil</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CommonUtil\TNamedMutex.h">
+      <Filter>include\CommonUtil</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CommonUtil\TThread.h">
+      <Filter>include\CommonUtil</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CommonUtil\TUtil.h">
+      <Filter>include\CommonUtil</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Log\LogDllDefine.h">
+      <Filter>include\Log</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Log\LogModule.h">
+      <Filter>include\Log</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Log\LogCommon.h">
+      <Filter>include\Log</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

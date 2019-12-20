@@ -1,0 +1,153 @@
+CC		?= gcc
+CXX		?= g++
+LD		?= ld
+AR		?= ar
+
+SO_EXT		?= so
+LIB_EXT		?= a
+LIB_PREFIX	?= lib
+
+buildbits       ?= $(shell getconf LONG_BIT)
+
+INCLUDES	:= 	-I$(TOPDIR)/../include \
+
+LIBPATH_SUFFIX	:=
+LDEMULATION	:= elf_i386
+
+ifeq ($(buildbits),64)
+LIBPATH_SUFFIX	:= 64
+LDEMULATION	:= elf_x86_64
+endif
+
+LIBS += -lstdc++ -lgcc -lpthread -lrt
+LIBPATH		:= $(TOPDIR)/../Release$(LIBPATH_SUFFIX)
+USRLIBPATH	:= /usr/lib$(LIBPATH_SUFFIX)
+
+#Shared Libs Only : not make *.a
+SHARED_LIBS_ONLY := 1
+
+DEFINES		:= -DLINUX
+OPTIONS		:= -O2
+
+PARTIAL_SUFFIX	:= _partial
+LIB_SUFFIX	:= 
+OBJ_SUFFIX	:= 
+
+#BUILD_SET DEBUG, RELEASE
+ifeq ($(DEBUG),1)
+OPTIONS		:= -g -O0  -W -Wall -Wno-missing-field-initializers -Wno-unused-parameter 
+PARTIAL_SUFFIX	:= d_partial
+LIB_SUFFIX	:= d
+OBJ_SUFFIX	:= d
+endif
+
+CFLAGS		:= -m$(buildbits) -fPIC $(OPTIONS)
+CXXFLAGS	:= -m$(buildbits) -fPIC $(OPTIONS)
+SOFLAGS		:= -m$(buildbits)
+LDFLAGS		:= -m $(LDEMULATION)
+ARFLAGS		:= rsc
+
+OUTDIR		:= objs$(LIBPATH_SUFFIX)
+SRCDIR		:= src
+
+
+SRCS	:= $(foreach dir, $(SUBDIRS), $(wildcard *.cpp))
+OBJS 	:= $(addsuffix .o, $(basename $(SRCS)))
+
+all : $(TARGET)
+
+%.o : %.cpp
+	@echo "-- Compiling $@ form $< --"
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+$(TARGET) : $(OBJS)
+	@echo "-- Linking $@ form $@.o --"
+	$(CC) $(CFLAGS) $@.o -o $@ $(DEFINES) $(INCLUDES)
+
+#%$(PARTIAL_SUFFIX).o : $(OBJS)
+#	$(LD) $(LDFLAGS) -r -o $(OUTDIR)/$@ $(OBJS)
+
+%.$(LIB_EXT) : $(OBJS)
+	$(AR) $(ARFLAGS) $(LIBPATH)/$@ $?
+
+%.$(SO_EXT) : $(OBJS)
+	$(CXX) $(SOFLAGS) -shared -Wl,-soname,$@ -o $(LIBPATH)/$@ $?
+
+
+##########################################
+#.SUFFIXES : .o .c .cpp
+#%.o:%.c
+#	$(CC) $(CFLAGS) -o $@ $(DEFINES) $(INCLUDES) -c $<
+
+#%.o:%.cpp
+#	$(CXX) $(CXXFLAGS) -o $@ $(DEFINES) $(INCLUDES) -c $<
+
+#$(OUTDIR)/%$(OBJ_SUFFIX).o : $(SRCDIR)/%.cpp
+#	$(CXX) $(CXXFLAGS) -o $@ $(DEFINES) $(INCLUDES) -c $<
+##########################################
+
+
+
+
+
+
+
+
+# Compile Option
+
+#TOPDIR := $(shell if [ "$$PWD" != "" ]; then echo $$PWD; else pwd; fi)
+TOPDIR := ../
+
+# --- 기본적으로 수정되는 내용들 ! -----------------------------------
+
+TARGET = libcommon_util.a
+SRCS	:= $(foreach dir, $(SUBDIRS), $(wildcard *.cpp))
+OBJS 	:= $(addsuffix .o, $(basename $(SRCS)))
+
+INCLUDEDIR =
+
+#---------------------------------------------------------------------
+
+# --- 크로스 컴파일과 관련된 내용은 여기를 수정할것 ! ----------------
+CC = gcc
+CXX = g++
+AR = ar
+LD = ld
+#---------------------------------------------------------------------
+
+CFLAGS += $(INCLUDEDIRS)
+CFLAGS += -Wall -O2 -g
+CPPFLAGS +=
+CXXFLAGS +=
+
+INCLUDEDIRS += -I./ -I$(TOPDIR)/include 
+
+#
+# Compilation target for C files
+#
+%.o:%.c
+@echo "Compiling $< ..."
+$(CC) -c $(CPPFLAGS) $(CFLAGS) -o $@ $<
+
+#
+# Compilation target for C++ files
+#
+%.o:%.cc
+@echo "C++ compiling $< ..."
+$(CXX) -c $(CFLAGS) $(CXXFLAGS) -o $@ $<
+
+all : $(TARGET)
+
+$(TARGET) : $(OBJS)
+$(RM) $(TARGET)
+$(AR) $(TARGET) $(OBJS)
+
+dep :
+$(CC) -M $(INCLUDEDIRS) $(SRCS) > .depend
+
+clean :
+rm -rf $(OBJS) $(TARGET) core
+
+ifeq (.depend,$(wildcard .depend))
+include .depend
+endif

@@ -1,0 +1,76 @@
+CC		?= gcc
+CXX		?= g++
+LD		?= ld
+AR		?= ar
+
+SO_EXT		?= so
+LIB_EXT		?= a
+LIB_PREFIX	?= lib
+
+buildbits       ?= $(shell getconf LONG_BIT)
+
+INCLUDES	:= 	-I$(TOPDIR)/../include \
+
+LIBPATH_SUFFIX	:=
+LDEMULATION	:= elf_i386
+
+ifeq ($(buildbits),64)
+LIBPATH_SUFFIX	:= 64
+LDEMULATION	:= elf_x86_64
+endif
+
+LIBS += -lstdc++ -lgcc -lpthread -lrt
+LIBPATH		:= $(TOPDIR)/../Release$(LIBPATH_SUFFIX)
+USRLIBPATH	:= /usr/lib$(LIBPATH_SUFFIX)
+
+#Shared Libs Only : not make *.a
+SHARED_LIBS_ONLY := 1
+
+DEFINES		:= -DLINUX
+OPTIONS		:= -O2
+
+PARTIAL_SUFFIX	:= _partial
+LIB_SUFFIX	:= 
+OBJ_SUFFIX	:= 
+
+#BUILD_SET DEBUG, RELEASE
+ifeq ($(DEBUG),1)
+OPTIONS		:= -g -O0  -W -Wall -Wno-missing-field-initializers -Wno-unused-parameter 
+PARTIAL_SUFFIX	:= d_partial
+LIB_SUFFIX	:= d
+OBJ_SUFFIX	:= d
+endif
+
+CFLAGS		:= -m$(buildbits) -fPIC $(OPTIONS)
+LDFLAGS		:= -m $(LDEMULATION)
+ARFLAGS		:= rsc
+
+OUTDIR		:= objs$(LIBPATH_SUFFIX)
+SRCDIR		:= src
+
+
+
+
+all : $(TARGET)
+
+%.o : %.cpp
+	@echo "-- Compiling $@ form $< --"
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+TARGET : %.cpp
+	@echo "-- Linking $@ form $@.o --"
+	$(CC) $(CFLAGS) $@.o -o $@ $(LIBS)
+
+##########################################
+.SUFFIXES : .o .c .cpp
+%.o:%.c
+	$(CC) $(CFLAGS) -o $@ $(DEFINES) $(INCLUDES) -c $<
+
+%.o:%.cpp
+	$(CXX) $(CXXFLAGS) -o $@ $(DEFINES) $(INCLUDES) -c $<
+
+$(OUTDIR)/%$(OBJ_SUFFIX).o : $(SRCDIR)/%.cpp
+	$(CXX) $(CXXFLAGS) -o $@ $(DEFINES) $(INCLUDES) -c $<
+##########################################
+
+

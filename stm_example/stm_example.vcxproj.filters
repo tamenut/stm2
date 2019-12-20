@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="SKF">
+      <UniqueIdentifier>{db0027d8-ddaa-4ab2-8d67-74cceff6574d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="example.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="RccReaderListener.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="SKF.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\skf\CAxisTransformations.cpp">
+      <Filter>SKF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\skf\CBCUMatUtil.cpp">
+      <Filter>SKF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\skf\CGeneratioNoise.cpp">
+      <Filter>SKF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\skf\CMatUtil.cpp">
+      <Filter>SKF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\skf\Scenario_Generation_Target_Trajectory.cpp">
+      <Filter>SKF</Filter>
+    </ClCompile>
+    <ClCompile Include="..\skf\Vector.cpp">
+      <Filter>SKF</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="RccReaderListener.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="SKF.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\skf\CAxisTransformations.h">
+      <Filter>SKF</Filter>
+    </ClInclude>
+    <ClInclude Include="..\skf\CBCUMatUtil.h">
+      <Filter>SKF</Filter>
+    </ClInclude>
+    <ClInclude Include="..\skf\CFilterParameterData.h">
+      <Filter>SKF</Filter>
+    </ClInclude>
+    <ClInclude Include="..\skf\CGeneratioNoise.h">
+      <Filter>SKF</Filter>
+    </ClInclude>
+    <ClInclude Include="..\skf\CMatUtil.h">
+      <Filter>SKF</Filter>
+    </ClInclude>
+    <ClInclude Include="..\skf\constant.h">
+      <Filter>SKF</Filter>
+    </ClInclude>
+    <ClInclude Include="..\skf\CTargetDataType.h">
+      <Filter>SKF</Filter>
+    </ClInclude>
+    <ClInclude Include="..\skf\Scenario_Generation_Target_Trajectory.h">
+      <Filter>SKF</Filter>
+    </ClInclude>
+    <ClInclude Include="..\skf\Vector.h">
+      <Filter>SKF</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
