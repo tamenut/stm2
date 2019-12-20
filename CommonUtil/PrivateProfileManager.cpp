@@ -49,7 +49,7 @@ PrivateProfile PrivateProfileManager::create_private_profile(char *buf)
 	char * del_prt;
 
 	strcpy(buf_tmp, buf);
-	del_prt = strrchr(buf_tmp, '=');    /* Parse out the equal sign */
+	del_prt = strrchr(buf_tmp, '=');
 	if (del_prt != NULL)
 	{
 		del_prt++;
@@ -118,12 +118,14 @@ bool PrivateProfileManager::get_entry_value(char * section_name, char * entry_na
 
 	if (strlen(section_name) >= MAX_NAME_LEN - 1)
 	{
-		printf("Error : section_name's length is too long(section_name:%s, length:%u) - In PrivateProfileManager::get_entry_value()\n", section_name, strlen(section_name));
+		printf("Error : section_name's length is too long(section_name:%s, length:%u) - In PrivateProfileManager::get_entry_value()\n", 
+			section_name, strlen(section_name));
 	}
 
 	if (strlen(entry_name) >= MAX_NAME_LEN - 1)
 	{
-		printf("Error : entry_name's length is too long(entry_name:%s, length:%u) - In PrivateProfileManager::get_entry_value()\n", entry_name, strlen(entry_name));
+		printf("Error : entry_name's length is too long(entry_name:%s, length:%u) - In PrivateProfileManager::get_entry_value()\n",
+			entry_name, strlen(entry_name));
 	}
 
 	int section_idx = get_section_idx(section_name);
@@ -170,12 +172,14 @@ bool PrivateProfileManager::set_entry_value(char * section_name, char *entry_nam
 	bool res = false;
 	if (strlen(section_name) >= MAX_NAME_LEN - 1)
 	{
-		printf("Error : section_name's length is too long(section_name:%s, length:%u) - In PrivateProfileManager::set_entry_value()\n", section_name, strlen(section_name));
+		printf("Error : section_name's length is too long(section_name:%s, length:%u) - In PrivateProfileManager::set_entry_value()\n", 
+			section_name, strlen(section_name));
 	}
 
 	if (strlen(entry_name) >= MAX_NAME_LEN - 1)
 	{
-		printf("Error : entry_name's length is too long(entry_name:%s, length:%u) - In PrivateProfileManager::set_entry_value()\n", entry_name, strlen(entry_name));
+		printf("Error : entry_name's length is too long(entry_name:%s, length:%u) - In PrivateProfileManager::set_entry_value()\n", 
+			entry_name, strlen(entry_name));
 	}
 
 	int section_idx = get_section_idx(section_name);
@@ -205,7 +209,8 @@ bool PrivateProfileManager::set_entry_value(char * section_name, char *entry_nam
 	}
 	else
 	{
-		printf("Error : Can't set_entry_value(section_name:%s, entry_name:%s, section_idx:%d) \n", section_name, entry_name, section_idx);
+		printf("Error : Can't set_entry_value(section_name:%s, entry_name:%s, section_idx:%d) \n", 
+			section_name, entry_name, section_idx);
 	}
 	return res;
 }
@@ -255,7 +260,8 @@ bool PrivateProfileManager::add_entry_value(unsigned int section_idx, PrivatePro
 	}
 	else
 	{
-		printf("Error - In add_entry_value(), profile_cnt:%u, profile:%s=%s \n", private_profile_table[section_idx]._private_profile_cnt, private_profile._entry_str, private_profile._value_str);
+		printf("Error - In add_entry_value(), profile_cnt:%u, profile:%s=%s \n", 
+			private_profile_table[section_idx]._private_profile_cnt, private_profile._entry_str, private_profile._value_str);
 	}
 	return res;
 }

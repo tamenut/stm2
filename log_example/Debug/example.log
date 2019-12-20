@@ -1,0 +1,4 @@
+﻿  example.cpp
+example.obj : warning LNK4075: '/EDITANDCONTINUE'이(가) '/SAFESEH' 사양으로 인해 무시됩니다.
+  example.vcxproj -> C:\tamenut\stm\Debug\log_example.exe
+  example.vcxproj -> C:\tamenut\stm\Debug\log_example.pdb (Full PDB)

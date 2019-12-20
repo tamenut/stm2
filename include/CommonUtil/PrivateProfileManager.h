@@ -21,6 +21,10 @@ struct PrivateProfileSection
 	PrivateProfile _private_profile[MAX_ENTRY_CNT];
 };
 
+/***********************************/
+/*
+ini형식의 파일을 읽고, 쓰기 위한 클래스ㅏㅐ
+*/
 class PrivateProfileManager
 {
 private:

@@ -158,6 +158,7 @@ void DataReaderImpl::run()
 	//delete payload;
 }
 
+//메시지 송수신 패킷 사이즈 관련 통계를 위한 함수
 void DataReaderImpl::update_rcv_msg_size(unsigned int msg_len)
 {
 	_proc_msg_info._rcv_msg_total_size += msg_len;
